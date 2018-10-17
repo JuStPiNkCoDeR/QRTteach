@@ -1,0 +1,9 @@
+{
+  "formidable": {
+    "options": {
+      "encoding": "utf-8",
+      "uploadDir": "../../upload",
+      "multiples": true
+    }
+  }
+}
