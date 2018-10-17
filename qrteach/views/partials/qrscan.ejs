@@ -1,1 +1,17 @@
-<p>QR scan here!</p>
+<div class="qr-block">
+    <div class="qr-field">
+        <%-lang.aboutQR%>
+        <canvas></canvas>
+        <script type="text/javascript" src="/js/jquery.js"></script>
+        <script type="text/javascript" src="/js/qr/qrcodelib.js"></script>
+        <script type="text/javascript" src="/js/qr/webcodecamjquery.js"></script>
+        <script type="text/javascript">
+            var arg = {
+                resultFunction: function(result) {
+                    console.log(result);
+                }
+            };
+            $(".qr-block .qr-field canvas").WebCodeCamJQuery(arg).data().plugin_WebCodeCamJQuery.play();
+        </script>
+    </div>
+</div>

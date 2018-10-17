@@ -1,0 +1,37 @@
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  td {
+    border: $borderTable;
+  }
+  thead {
+    td {
+      text-align: center;
+    }
+    td:first-child {
+      width: $shortWidth;
+    }
+    td:last-child {
+      width: $medWidth;
+    }
+  }
+  tbody tr {
+    transition: $anim;
+    &:hover {
+      background: $hoverTableBG;
+      cursor: pointer;
+    }
+    &.chosen {
+      background: $clickedTableBG;
+    }
+    td:first-child,
+    td:last-child {
+      text-align: center;
+    }
+    td:nth-child(2) {
+      padding: $tablePadding;
+    }
+  }
+}

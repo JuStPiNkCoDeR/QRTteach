@@ -1,4 +1,19 @@
 {
+  "languages": {
+    "ru": {
+      "index": "/home/pinkcoder/Projects/QRTteach/qrteach/langData/ru/index.json",
+      "create": "/home/pinkcoder/Projects/QRTteach/qrteach/langData/ru/create.json"
+    }
+  },
+  "session": {
+    "secret": "HeReIsSoMeSeCrEt",
+    "key": "HeReIsSoMeKeY",
+    "cookie": {
+      "path": "/",
+      "httpOnly": true,
+      "maxAge": null
+    }
+  },
   "formidable": {
     "options": {
       "encoding": "utf-8",

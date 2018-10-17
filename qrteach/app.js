@@ -3,8 +3,8 @@ let path = require('path');
 let favicon = require('static-favicon');
 let logger = require('morgan');
 let cookieParser = require('cookie-parser');
-let formidable = require('express-formidable');
 let conf = require('./config');
+let session = require('express-session');
 //var bodyParser = require('body-parser');
 
 let index = require('./routes/index');
@@ -23,7 +23,14 @@ app.use(logger('dev'));
 //app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(formidable(conf.get('formidable:options')));
+app.use(session({
+    secret: conf.get('session:secret'),
+    resave: false,
+    secure: false,
+    saveUninitialized: true,
+    key: conf.get('session:key'),
+    cookie: conf.get('session:cookie')
+}));
 
 app.use('/', index);
 app.use('/create', create);

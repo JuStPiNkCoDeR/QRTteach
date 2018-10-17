@@ -1,0 +1,27 @@
+form {
+  &.not-chosen {
+    display: none;
+  }
+  label {
+    display: block;
+    .labelText{
+      display: block;
+      text-align: center;
+    }
+  }
+  textarea {
+    width: 100%;
+    height: auto;
+  }
+  input {
+    display: block;
+    margin: 0 auto;
+  }
+  #max-mark {
+    width: $widthMark;
+  }
+  label:last-child input {
+    width: $widthNumIn;
+    display: inline;
+  }
+}

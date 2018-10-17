@@ -1,0 +1,75 @@
+/*** MAIN COLOURS ***/
+/*** END MAIN COLOURS ***/
+/*** BLOCKS ***/
+/*** END BLOCKS ***/
+/*** FORMS ***/
+/*** END FORMS ***/
+/*** ANIMATION ***/
+/*** END ANIMATION ***/
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+table td {
+  border: 1px solid black;
+}
+table thead td {
+  text-align: center;
+}
+table thead td:first-child {
+  width: 11%;
+}
+table thead td:last-child {
+  width: 15%;
+}
+table tbody tr {
+  transition: 0.3s;
+}
+table tbody tr:hover {
+  background: gray;
+  cursor: pointer;
+}
+table tbody tr.chosen {
+  background: green;
+}
+table tbody tr td:first-child,
+table tbody tr td:last-child {
+  text-align: center;
+}
+table tbody tr td:nth-child(2) {
+  padding: 0 7px;
+}
+
+form.not-chosen {
+  display: none;
+}
+form label {
+  display: block;
+}
+form label .labelText {
+  display: block;
+  text-align: center;
+}
+form textarea {
+  width: 100%;
+  height: auto;
+}
+form input {
+  display: block;
+  margin: 0 auto;
+}
+form #max-mark {
+  width: 20%;
+}
+form label:last-child input {
+  width: 10%;
+  display: inline;
+}
+
+body {
+  margin: 0;
+}
+
+/*# sourceMappingURL=create.css.map */
