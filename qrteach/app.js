@@ -7,26 +7,26 @@ let formidable = require('express-formidable');
 let conf = require('./config');
 //var bodyParser = require('body-parser');
 
-let routes = require('./routes/index');
-let users = require('./routes/users');
+let index = require('./routes/index');
+let create = require('./routes/create');
 
 let app = express();
 
 // view engine setup
 app.engine('ejs', require('ejs-locals'));
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views/templates'));
 app.set('view engine', 'ejs');
 
 app.use(favicon());
 app.use(logger('dev'));
-app.use(formidable(conf.get('formidable:options')));
 //app.use(bodyParser.json());
 //app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(formidable(conf.get('formidable:options')));
 
-app.use('/', routes);
-app.use('/users', users);
+app.use('/', index);
+app.use('/create', create);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
