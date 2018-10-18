@@ -6,6 +6,18 @@
 /*** END FORMS ***/
 /*** ANIMATION ***/
 /*** END ANIMATION ***/
+/*** GRID CONSTANT ***/
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.no-gutters > .col,
+.no-gutters > [class*=col-] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/*** END GRID CONSTANT ***/
 table {
   width: 100%;
   table-layout: fixed;
@@ -42,6 +54,20 @@ table tbody tr td:nth-child(2) {
   padding: 0 7px;
 }
 
+.tab {
+  padding: 10px 7px;
+  text-align: center;
+  background: #cdcdcd;
+  transition: 0.3s;
+}
+.tab:hover {
+  background: gray;
+  cursor: pointer;
+}
+.tab.chosen {
+  background: green;
+}
+
 form.not-chosen {
   display: none;
 }
@@ -55,6 +81,7 @@ form label .labelText {
 form textarea {
   width: 100%;
   height: auto;
+  resize: none;
 }
 form input {
   display: block;
@@ -63,7 +90,7 @@ form input {
 form #max-mark {
   width: 20%;
 }
-form label:last-child input {
+form .time input {
   width: 10%;
   display: inline;
 }

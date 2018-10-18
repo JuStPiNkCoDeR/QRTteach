@@ -1,3 +1,16 @@
+.tab {
+  padding: $paddingTab;
+  text-align: center;
+  background: $tabBG;
+  transition: $anim;
+  &:hover {
+    background: $hoverTableBG;
+    cursor: pointer;
+  }
+  &.chosen {
+    background: $clickedTableBG;
+  }
+}
 form {
   &.not-chosen {
     display: none;
@@ -12,6 +25,7 @@ form {
   textarea {
     width: 100%;
     height: auto;
+    resize: none;
   }
   input {
     display: block;
@@ -20,7 +34,7 @@ form {
   #max-mark {
     width: $widthMark;
   }
-  label:last-child input {
+  .time input {
     width: $widthNumIn;
     display: inline;
   }

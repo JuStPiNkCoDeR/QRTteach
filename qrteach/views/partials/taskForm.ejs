@@ -1,15 +1,31 @@
-<form action="" class="not-chosen">
+<form action="" id="task" class="not-chosen">
     <label for="question" class="required">
         <span class="labelText"><%-lang.form.simpleTask.question%></span>
-        <textarea name="question" id="question" rows="7"></textarea>
+        <textarea name="question" id="question" rows="7" maxlength="300"></textarea>
+    </label>
+    <label for="answer">
+        <span class="labelText"><%-lang.form.simpleTask.answers%></span>
+        <textarea name="answer" id="answer" rows="2" placeholder="Правильный ответ" maxlength="100"></textarea>
+        <textarea name="wrong1" id="wrong1" rows="2" placeholder="Неправильный ответ" maxlength="100"></textarea>
+        <textarea name="wrong2" id="wrong2" rows="2" placeholder="Неправильный ответ" maxlength="100"></textarea>
+        <textarea name="wrong3" id="wrong3" rows="2" placeholder="Неправильный ответ" maxlength="100"></textarea>
     </label>
     <label for="max-mark">
         <span class="labelText"><%-lang.form.simpleTask.maxMark%></span>
-        <input type="number" name="max-mark" id="max-mark" value="1">
+        <input type="number" name="max-mark" id="max-mark" value="1" max="5" min="1">
     </label>
-    <label for="req-min">
+    <label for="req-min" class="time">
         <span class="labelText"><%-lang.form.simpleTask.timeForTask%></span>
-        <span class="labelText"><input type="number" name="req-min" id="req-min"><%-lang.minutes%><input type="number" name="req-sec" id="req-sec"><%-lang.seconds%></span>
+        <span class="labelText"><input type="number" name="req-min" id="req-min" max="5" min="0"><%-lang.minutes%><input type="number" name="req-sec" id="req-sec" max="60" min="0"><%-lang.seconds%></span>
+    </label>
+    <div class="next-task">
+        <p><%-lang.form.nextTask%></p>
+    </div>
+    <button><%-lang.form.send%></button>
+</form>
+<form action="" id="test" class="not-chosen">
+    <label for="req-test-min" class="time">
+        <span class="labelText"><%-lang.form.simpleTask.timeForTest%></span>
+        <span class="labelText"><input type="number" name="req-test-min" id="req-test-min" max="30" min="0"><%-lang.minutes%><input type="number" name="req-test-sec" id="req-test-sec" max="60" min="0"><%-lang.seconds%></span>
     </label>
 </form>
-<p></p>

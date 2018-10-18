@@ -12,6 +12,8 @@ $tablePadding: 0 7px;
 /*** FORMS ***/
 $widthNumIn: 10%;
 $widthMark: 20%;
+$tabBG: #cdcdcd;
+$paddingTab: 10px 7px;
 /*** END FORMS ***/
 
 /*** ANIMATION ***/
@@ -19,3 +21,16 @@ $anim: 0.3s;
 $hoverTableBG: gray;
 $clickedTableBG: green;
 /*** END ANIMATION ***/
+
+/*** GRID CONSTANT ***/
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+/*** END GRID CONSTANT ***/
