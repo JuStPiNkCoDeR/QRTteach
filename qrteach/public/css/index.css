@@ -1,9 +1,116 @@
+/*** MAIN COLOURS ***/
+/*** END MAIN COLOURS ***/
+/*** BLOCKS ***/
+/*** END BLOCKS ***/
+/*** FORMS ***/
+/*** END FORMS ***/
+/*** ANIMATION ***/
+/*** END ANIMATION ***/
+/*** SVG ***/
+/*** END SVG ***/
+/*** GRID CONSTANT ***/
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.no-gutters > .col,
+.no-gutters > [class*=col-] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+/*** END GRID CONSTANT ***/
 .qr-block {
   text-align: center;
 }
 
+table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+table td {
+  border: 1px solid black;
+}
+table thead td {
+  text-align: center;
+}
+table thead td:first-child {
+  width: 11%;
+}
+table thead td:last-child {
+  width: 15%;
+}
+table tbody tr {
+  transition: 0.3s;
+}
+table tbody tr:hover {
+  background: gray;
+  cursor: pointer;
+}
+table tbody tr.chosen {
+  background: green;
+}
+table tbody tr td:first-child,
+table tbody tr td:last-child {
+  text-align: center;
+}
+table tbody tr td:nth-child(2) {
+  padding: 0 7px;
+}
+
+.tab {
+  padding: 10px 7px;
+  text-align: center;
+  background: #cdcdcd;
+  transition: 0.3s;
+}
+.tab:hover {
+  background: gray;
+  cursor: pointer;
+}
+.tab.chosen {
+  background: green;
+}
+
+.not-chosen {
+  display: none;
+}
+
+form label {
+  display: block;
+}
+form label .labelText {
+  display: block;
+  text-align: center;
+}
+form textarea {
+  width: 100%;
+  height: auto;
+  resize: none;
+}
+form input {
+  display: block;
+  margin: 0 auto;
+}
+form input[type=radio] {
+  display: inline;
+}
+form #max-mark {
+  width: 20%;
+}
+form .time input {
+  width: 10%;
+  display: inline;
+}
+
 body {
   margin: 0;
+}
+
+#overTime {
+  display: none;
 }
 
 /*# sourceMappingURL=index.css.map */

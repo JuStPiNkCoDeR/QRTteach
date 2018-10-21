@@ -6,6 +6,8 @@
 /*** END FORMS ***/
 /*** ANIMATION ***/
 /*** END ANIMATION ***/
+/*** SVG ***/
+/*** END SVG ***/
 /*** GRID CONSTANT ***/
 .no-gutters {
   margin-right: 0;
@@ -68,9 +70,10 @@ table tbody tr td:nth-child(2) {
   background: green;
 }
 
-form.not-chosen {
+.not-chosen {
   display: none;
 }
+
 form label {
   display: block;
 }
@@ -97,6 +100,10 @@ form .time input {
 
 body {
   margin: 0;
+}
+
+svg {
+  width: 30%;
 }
 
 /*# sourceMappingURL=create.css.map */

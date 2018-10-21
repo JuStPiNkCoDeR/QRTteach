@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-md-6">
+        <div class="short-test-desk">
+            <table>
+                <caption><%-lang.test.tableCaption%></caption>
+                <thead>
+                <tr>
+                    <td><%-lang.test.tableTaskCount%></td>
+                    <td><%-lang.test.tableTaskQuestion%></td>
+                    <td><%-lang.test.tableTaskComplete%></td>
+                </tr>
+                </thead>
+                <tbody>
+                <% for (var i = 0; i < test.test.length; i++) {
+                    var curIndex = i + 1 %>
+                <tr>
+                    <td><%=curIndex%></td>
+                    <td><%-test.test[i].question%></td>
+                    <td></td>
+                </tr>
+                <%}%>
+                </tbody>
+            </table>
+            <p><%-lang.test.time%><span id="timeTest"></span></p>
+            <p id="percentage"></p>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="task">
+            <form action="">
+                <p id="taskQuestion"></p>
+                <div class="ans-block"></div>
+                <p><%-lang.test.time%> <span id="taskTime"></span><span id="overTime"><%-lang.test.overTime%></span></p>
+                <p class="next-task"></p>
+                <button id="complete"><%-lang.test.complete%></button>
+            </form>
+        </div>
+    </div>
+    <%-scripts%>
+</div>

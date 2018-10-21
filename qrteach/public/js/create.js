@@ -1,6 +1,10 @@
 jQuery(document).ready(function () {
+    let animTime = 200;
+    let delay = animTime + 50;
     let testData = {
         testOptions: {
+            type: "simpleTest",
+            isTemp: true,
             timeTest: {
                 minutes: null,
                 seconds: null
@@ -20,7 +24,7 @@ jQuery(document).ready(function () {
         $('#req-min').val(testData.test[index].timeTask.minutes);
         $('#req-sec').val(testData.test[index].timeTask.seconds);
     }
-    function clearFields(index) {
+    function clearFields() {
         $('#question').val('');
         $('#answer').val('');
         $('#wrong1').val('');
@@ -30,10 +34,10 @@ jQuery(document).ready(function () {
         $('#req-sec').val('');
     }
     $('.tab').click(function () {
-        if (tabIndex !== null && tabIndex !== "test") $('#taskTab').removeClass('chosen');
-        else $('#testTab').removeClass('chosen');
+        let thisID = $(this).attr('id');
+        if (tabIndex !== null) $(tabIndex).removeClass('chosen');
         if (tabIndex === null) {
-            if ($(this).attr('id') === "taskTab") {
+            if (thisID === "taskTab") {
                 if (index === null) index = 0;
                 if (testData.test[index] !== null) upTaskInfo(index);
                 $('table tbody tr').eq(index).addClass('chosen');
@@ -52,11 +56,11 @@ jQuery(document).ready(function () {
                         isOver: false
                     };
                 }
-                $('#task').fadeIn(300).delay(310).removeClass('not-chosen');
-            }
-            else $('#test').fadeIn(300).delay(310).removeClass('not-chosen');
+                $('#task').fadeIn(animTime).delay(310).removeClass('not-chosen');
+            } else if (thisID === 'testTab') $('#test').fadeIn(animTime).delay(310).removeClass('not-chosen');
+            else if (thisID === 'errTab') $('#errors').fadeIn(animTime).delay(310).removeClass('not-chosen');
         } else {
-            if ($(this).attr('id') === "taskTab") {
+            if (thisID === "taskTab") {
                 if (index === null) index = 0;
                 if (testData.test[index] !== null) upTaskInfo(index);
                 if (testData.test[index] === null) {
@@ -75,31 +79,36 @@ jQuery(document).ready(function () {
                     };
                 }
                 $('table tbody tr').eq(index).addClass('chosen');
-                $('#test').fadeOut(300);
+                if (tabIndex === '#testTab') $('#test').fadeOut(animTime);
+                else $('#errors').fadeOut(animTime);
                 setTimeout(function () {
-                    $('#task').fadeIn(300);
-                }, 310);
-            }
-            else {
+                    $('#task').fadeIn(animTime).delay(310).removeClass('not-chosen');
+                }, delay);
+            } else {
                 if (index !== null) {
                     $('table tbody tr').eq(index).removeClass('chosen');
-                    upTaskInfo(index);
+                    //upTaskInfo(index);
                 }
-                $('#task').fadeOut(300);
+                if (tabIndex === '#taskTab') $('#task').fadeOut(animTime);
+                else if (tabIndex === '#testTab') $('#test').fadeOut(animTime);
+                else if (tabIndex === '#errTab') $('#errors').fadeOut(animTime);
                 setTimeout(function () {
-                    $('#test').fadeIn(300);
-                }, 310);
+                    if (thisID === 'testTab') {
+                        $('#test').fadeIn(animTime).delay(310).removeClass('not-chosen');
+                    }
+                    else if (thisID === 'errTab') $('#errors').fadeIn(animTime).delay(310).removeClass('not-chosen');
+                }, delay);
             }
         }
-        tabIndex = ($(this).attr('id') === "taskTab") ? "task":"test";
+        tabIndex = '#' + thisID;
         $(this).addClass('chosen');
     });
     $('table tbody tr').click(function () {
         if (index !== null) $('table tbody tr').eq(index).removeClass('chosen');
         index = $(this).index();
         $(this).addClass('chosen');
-        if (index + 1 <= $('table tbody tr:last-child').index()) $('.next-task').fadeIn(300);
-        else $('.next-task').fadeOut(200);
+        if (index + 1 <= $('table tbody tr:last-child').index()) $('.next-task').fadeIn(animTime);
+        else $('.next-task').fadeOut(animTime - 100);
 
         if (testData.test[index] === null) {
             testData.test[index] = {
@@ -115,18 +124,19 @@ jQuery(document).ready(function () {
                 },
                 isOver: false
             };
-            clearFields(index);
+            clearFields();
         } else upTaskInfo(index);
         $('#taskTab').addClass('chosen');
-        if (tabIndex === null) $('#task').fadeIn(300).delay(310).removeClass('not-chosen');
-        else if (tabIndex === "test") {
-            $('#testTab').removeClass('chosen');
-            $('#test').fadeOut(300);
+        if (tabIndex === null) $('#task').fadeIn(animTime).delay(310).removeClass('not-chosen');
+        else {
+            $(tabIndex).removeClass('chosen');
+            if (tabIndex === '#testTab') $('#test').fadeOut(animTime);
+            else if (tabIndex === '#errTab') $('#errors').fadeOut(animTime);
             setTimeout(function () {
-                $('#task').fadeIn(300);
-            }, 310);
+                $('#task').fadeIn(animTime);
+            }, delay);
         }
-        tabIndex = "task";
+        tabIndex = "#taskTab";
     });
 
     $('#question').keyup(function () {
@@ -153,7 +163,7 @@ jQuery(document).ready(function () {
     $('#wrong3').change(function () {
         testData.test[index].answers.wrongs[2] = $(this).val();
     });
-    $('#max-mark').change(function () {
+    $('#max-mark').keyup(function () {
         testData.test[index].maxMark = $(this).val();
     });
     $('#req-min').change(function () {
@@ -175,21 +185,65 @@ jQuery(document).ready(function () {
         index++;
         $('table tbody tr').eq(index).addClass('chosen');
         if (index === $('table tbody tr:last-child').index()) $(this).fadeOut(200);
-        if (testData.test[index] !== null) upTaskInfo(index);
-        else clearFields(index);
+        if (testData.test[index] === null) {
+            testData.test[index] = {
+                question: null,
+                answers: {
+                    right: null,
+                    wrongs: [null, null, null]
+                },
+                maxMark: null,
+                timeTask: {
+                    minutes: null,
+                    seconds: null
+                },
+                isOver: false
+            };
+            clearFields();
+        } else upTaskInfo(index);
     });
     $('button').click(function (e) {
         e.preventDefault();
-        console.log(testData);
-        let ajax = new XMLHttpRequest();
-        ajax.open('POST', '/create/QR', true);
-        ajax.setRequestHeader("X-Requested-With", "XMLHttpRequest");
-        ajax.setRequestHeader("Content-type", "application/*+json");
-        ajax.onreadystatechange = function () {
-            if (this.status !== 4) return;
-            let ans = JSON.parse(this.responseText);
-            console.log(ans);
-        };
-        ajax.send(JSON.stringify(testData));
+        let copyTest = testData;
+        let parseResult = [];
+        for (let i = 0; i < copyTest.test.length; i++) {
+            let realNumQuestion = i + 1;
+            let numQuestion = 'Для вопроса (' + realNumQuestion + ') ';
+            if (copyTest.test[i] === null) {
+                copyTest.test.splice(i,1);
+                i--;
+            } else {
+                if (copyTest.test[i].question === null || "") parseResult.push(numQuestion + ' не указан вопрос');
+                if (copyTest.test[i].answers.right === null || "") parseResult.push(numQuestion + 'не указан правильный ответ');
+                for (let j = 0; j < copyTest.test[i].answers.wrongs.length; j++) {
+                    if (copyTest.test[i].answers.wrongs[j] === null || "") {
+                        copyTest.test[i].answers.wrongs.splice(j,1);
+                        j--;
+                    }
+                }
+                if (copyTest.test[i].answers.wrongs.length === 0) parseResult.push(numQuestion + ' не указаны ошибочные ответы');
+                if (copyTest.test[i].maxMark === null || "") parseResult.push(numQuestion + ' не указан получаемый балл');
+            }
+        }
+        if (parseResult.length !== 0) {
+            let errHTML = "";
+            for (let k = 0; k < parseResult.length; k++) errHTML+='<li>' + parseResult[k] + '</li>';
+            $('#errors').html(errHTML);
+            $('#errTab').click();
+        } else {
+            console.log(copyTest);
+            let ajax = new XMLHttpRequest();
+            ajax.open('POST', '/create/QR', true);
+            ajax.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            ajax.setRequestHeader("Content-type", "application/*+json");
+            ajax.onreadystatechange = function () {
+                if (this.readyState !== 4) return;
+                console.log(this.responseText);
+                let ans = JSON.parse(this.responseText);
+                console.log(ans);
+                $('body').append(ans.QR);
+            };
+            ajax.send(JSON.stringify(copyTest));
+        }
     })
 });

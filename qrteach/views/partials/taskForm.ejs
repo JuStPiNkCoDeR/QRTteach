@@ -12,7 +12,7 @@
     </label>
     <label for="max-mark">
         <span class="labelText"><%-lang.form.simpleTask.maxMark%></span>
-        <input type="number" name="max-mark" id="max-mark" value="1" max="5" min="1">
+        <input type="number" name="max-mark" id="max-mark" placeholder="1" max="5" min="1">
     </label>
     <label for="req-min" class="time">
         <span class="labelText"><%-lang.form.simpleTask.timeForTask%></span>
@@ -29,3 +29,4 @@
         <span class="labelText"><input type="number" name="req-test-min" id="req-test-min" max="30" min="0"><%-lang.minutes%><input type="number" name="req-test-sec" id="req-test-sec" max="60" min="0"><%-lang.seconds%></span>
     </label>
 </form>
+<ul id="errors" class="not-chosen"><%-lang.form.emptyErrors%></ul>

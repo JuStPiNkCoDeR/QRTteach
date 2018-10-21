@@ -20,5 +20,25 @@
       "uploadDir": "../../upload",
       "multiples": true
     }
+  },
+  "mongoose": {
+    "dataBase": "mongodb://127.0.0.1:27017/qrteach",
+    "options": {
+      "useNewUrlParser": true
+    }
+  },
+  "variables": {
+    "DATE": {
+      "format": {
+        "year": "numeric",
+        "month": "long",
+        "day": "numeric",
+        "weekday": "long",
+        "timezone": "UTC",
+        "hour": "numeric",
+        "minute": "numeric",
+        "second": "numeric"
+      }
+    }
   }
 }

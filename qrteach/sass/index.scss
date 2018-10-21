@@ -1,5 +1,12 @@
+@import "./lib/variables";
 @import "./lib/qrscan";
+@import "./lib/taskTable";
+@import "./lib/taskForm";
 
 body {
   margin: 0;
+}
+
+#overTime {
+  display: none;
 }

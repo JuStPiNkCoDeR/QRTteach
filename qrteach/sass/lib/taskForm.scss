@@ -11,10 +11,10 @@
     background: $clickedTableBG;
   }
 }
+.not-chosen {
+  display: none;
+}
 form {
-  &.not-chosen {
-    display: none;
-  }
   label {
     display: block;
     .labelText{
@@ -30,6 +30,9 @@ form {
   input {
     display: block;
     margin: 0 auto;
+    &[type="radio"] {
+      display: inline;
+    }
   }
   #max-mark {
     width: $widthMark;

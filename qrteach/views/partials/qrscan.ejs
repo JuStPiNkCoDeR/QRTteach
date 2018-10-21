@@ -6,9 +6,27 @@
         <script type="text/javascript" src="/js/qr/qrcodelib.js"></script>
         <script type="text/javascript" src="/js/qr/webcodecamjquery.js"></script>
         <script type="text/javascript">
+            let test;
+            let done = false;
             var arg = {
                 resultFunction: function(result) {
-                    console.log(result);
+                    if (!done) {
+                        $('.qr-block').fadeOut(300);
+                        let ID = result.code;
+                        let ajax = new XMLHttpRequest();
+                        ajax.open('POST', '/getTest', true);
+                        ajax.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+                        ajax.setRequestHeader("Content-type", "application/*+json");
+                        ajax.onreadystatechange = function () {
+                            if (this.readyState !== 4) return;
+                            let ans = JSON.parse(this.responseText);
+                            console.log(ans);
+                            test = ans.testObj;
+                            $('.test-block').html(ans.test);
+                        }
+                        ajax.send(JSON.stringify({id: ID}));
+                        done = true;
+                    }
                 }
             };
             $(".qr-block .qr-field canvas").WebCodeCamJQuery(arg).data().plugin_WebCodeCamJQuery.play();

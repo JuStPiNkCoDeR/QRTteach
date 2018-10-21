@@ -9,6 +9,7 @@ let session = require('express-session');
 
 let index = require('./routes/index');
 let create = require('./routes/create');
+let defSettings = require('./routes/getDefault');
 
 let app = express();
 
@@ -34,6 +35,7 @@ app.use(session({
 
 app.use('/', index);
 app.use('/create', create);
+app.use('/getdefault', defSettings);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
